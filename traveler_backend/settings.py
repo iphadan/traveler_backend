@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'UserModule',
 ]
+
+# Use the custom Account model as the user model
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -75,21 +78,34 @@ WSGI_APPLICATION = 'traveler_backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+# DATABASES = {
+#     'default': dj_database_url.parse(
+#         "postgresql://db_post_traveler_user:qAmcP6XMDB1iao1Oof3RVMFwTQFrbZKR@dpg-d66cf115pdvs73ecms7g-a.oregon-postgres.render.com:5432/db_post_traveler",
+#         conn_max_age=600,
+#         ssl_require=True
+#     )
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',  # PostgreSQL backend
+        'NAME': 'travelerDb',                             # Database name
+        'USER': 'postgres',                           # Database user
+        'PASSWORD': 'postgres',                   # Database password
+        'HOST': 'localhost',                        # Database host
+        'PORT': '5432',                             # Default PostgreSQL port
+        'OPTIONS': {
+            'connect_timeout': 10,                  # Optional: connection timeout in seconds
+        }
     }
 }
-
-DATABASES = {
-    'default': dj_database_url.parse(
-        "postgresql://db_post_traveler_user:qAmcP6XMDB1iao1Oof3RVMFwTQFrbZKR@dpg-d66cf115pdvs73ecms7g-a.oregon-postgres.render.com:5432/db_post_traveler",
-        conn_max_age=600,
-        ssl_require=True
-    )
-}
-
 
 
 # Password validation
